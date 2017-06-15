@@ -1,0 +1,280 @@
+@charset "utf-8";
+
+$bgcolor :#e8e8e8;
+$titcolor : #07273d;
+$diancolor : #fca70a;
+
+
+* {margin:0px; padding:0px; border:0px; }
+html,body { overflow: hidden!important;overflow-x: hidden; }
+html{width:100%;height:100%; }
+body { width: 100%; height: 100%; padding:0px; margin: 0px; background:$bgcolor; font-family: "黑体"; font-size: 12px;   }
+img {vertical-align: center; display: block; }
+li {list-style:none;}
+a{ text-decoration:none;-webkit-tap-highlight-color: rgba(255, 255, 255, 0);-webkit-user-select: none;-moz-user-focus: none;-moz-user-select: none;}
+
+.fl { float:left;    }
+.fr { float: right;  }
+.cl { clear: both;   }
+.w100 { width: 100%; }
+.h100 { height: 100%; }
+.disb { display: block; }
+.disn { display: none; }
+
+@function rem($target) {
+    @return ($target / 64) * 1rem;
+}
+
+@mixin prefix-opacity($opac){
+    opacity:$opac;
+    -webkit-opacity:$opac;
+}
+
+@mixin border-radius($bod){
+    -webkit-border-radius:$bod+px;
+    border-radius: $bod+px;
+}
+
+@mixin prefix-animation($animation-name){
+    animation:$animation-name;
+    -webkit-animation:$animation-name;
+}
+
+@mixin prefix-keyframes($animation-name){
+    @keyframes #{$animation-name}{
+        @content;
+    }
+    @-webkit-keyframes #{$animation-name}{
+        @content; 
+    }
+} 
+@mixin prefix-content($content-name,$content-txt){
+    #{$content-name}:$content-txt;
+    -webkit-#{$content-name}:$content-txt;
+} 
+
+.main { @extend .w100; @extend .h100; }
+
+.pageA { display: block; }
+.pageB { }
+
+.pageA {
+    .ezlogo { 
+           img { 
+            width: rem(340); 
+            margin: 0 auto; 
+            padding-top: 8%;
+            position: absolute;
+            left:0;
+            right: 0;
+            top:34%;
+           }
+        }
+   .ezTitle {   
+        position: absolute;
+        height: rem(300);
+        top:47%;
+        margin-top: rem(-150);
+        width: 100%;
+        p {
+            text-align: center;
+            color: $titcolor;
+            font-size: rem(30);
+            letter-spacing: rem(30);
+            display: block;
+            margin-left: 14px;
+            padding-bottom: rem(26);
+            position: relative;
+            top:0;
+            @include prefix-opacity(1);
+         
+        }
+        
+        .loadLine {
+            padding-top: rem(110);
+            width: rem(340);
+            text-align: center;
+            margin: 0 auto;
+            position: relative;
+            .loadnum {
+                position: absolute;
+                left:0;
+                right: 0;
+                font-size: rem(28);
+                font-weight: bold;
+                color: $titcolor;
+                top:80%;
+                width: rem(70);
+                margin: 0 auto;
+                background: $bgcolor;
+                @include prefix-animation(shake 0.6s infinite);
+                z-index: 2;
+            }
+            .loadcar {
+                position: absolute;
+                left:0;
+                right: 0;
+                width:20px;
+                margin: -20px auto 0 auto;
+                @include prefix-content(transform,scale(0) rotate(180deg));
+                 @include prefix-opacity(0);
+                z-index: 1;
+            }
+            .loadper {
+                width: 100%;
+                background: $diancolor;
+                height: 3px;
+                margin: 0 auto;
+            }
+        }
+        .ezcoop {
+            text-align: center;
+            margin-top: rem(30);
+            span { display: inline-block; right: 0;  @include prefix-opacity(1); position: relative; }
+            span:first-child{ left:0; }
+            span:last-child{ right:0; }
+            a { 
+                font-weight: bold;
+                font-size: rem(40);
+                display: inline-block;
+                vertical-align: middle;
+                margin-top: rem(-50);
+                @include prefix-opacity(1);
+            }
+            img {
+                width: rem(150);
+            }
+        }
+
+        &.tran1 p{
+           top:-15px;
+
+           @include prefix-content(transition,all 0.8s);
+           @include prefix-opacity(0);
+        }
+        &.tran1 .loadnum {
+            display: none;
+        }
+        &.tran1 .loadcar {
+          @include prefix-content(transform,scale(1) rotate(180deg));
+           @include prefix-opacity(1);
+           @include prefix-content(transition,all 0.5s 0.8s);
+        }
+        .loadcar.twocar {
+            margin-top:rem(600);
+             @include prefix-opacity(0);
+             @include prefix-content(transition,all 1.3s );
+        }
+        &.tran1 .loadper{
+            width: 0%;
+            @include prefix-content(transition,width 0.8s 0.2s);
+        }
+        &.tran1 .ezcoop span:first-child {
+            left:-30px;
+            @include prefix-opacity(0);
+            @include prefix-content(transition,all 1s 0.4s);
+        }
+         &.tran1 .ezcoop span:last-child {
+            right:-30px;
+            @include prefix-opacity(0);
+            @include prefix-content(transition,all 1s 0.4s);
+        }
+        &.tran1 .ezcoop a {
+            @include prefix-opacity(0);
+            @include prefix-content(transition,opacity 1s 0.4s);
+        }
+      }
+      .ezlogo .tranlogo  { 
+            top:0;
+            @include prefix-content(transition,top 1.8s 0.2s);
+      }
+   
+}
+.pageB {
+    height: 100%;
+   
+    width: 100%;
+  
+    .ezlogo { 
+        padding-top: 8%;
+        padding-bottom: 7%;
+        display: block;
+        img { width: rem(340); margin: 0 auto;   @include prefix-opacity(0);  }
+    }
+    .slogan1 {
+        position: relative;
+        text-align: center;
+        color: #808385;
+        font-size: rem(24);
+        font-family: 宋体;
+        padding-bottom: 2%;
+        @include prefix-opacity(0);
+    }
+    .sloganl { left:-70px;  }
+    .sloganr { left: 70px; }
+    .hrline {
+        height: 3px;
+        background: #bdbdbd;
+        width: rem(400);
+        margin: rem(40) auto 0 auto;
+        position: relative;
+        @include prefix-opacity(0);
+        img {
+            position: absolute;
+            left:0;
+            right:0;
+            margin: rem(-20) auto 0 auto;
+            width: rem(50);
+        }
+    }
+    .slogan2 {
+        position: relative;
+        text-align: center;
+        font-size: rem(24);
+        font-family: 宋体;
+        padding-top:16%;
+        letter-spacing: 3px;
+        color: #353535;
+        @include prefix-opacity(0);
+    }
+    .car {
+        @include prefix-opacity(0);
+        position: relative;
+        top:50px;
+        img { width: rem(220); margin:8% auto 0 auto;  }
+    }
+    &.tran1_1 .ezlogo img {
+       @include prefix-opacity(1);
+      @include prefix-content(transition,opacity 0.6s 1.4s);
+    }
+    &.tran1_1 .slogan1 {
+         @include prefix-opacity(1);
+         left:0;
+         @include prefix-content(transition,all 0.6s 1.4s);
+    }
+    &.tran2 .slogan2 {
+        padding-top: 12%;
+        @include prefix-opacity(1);
+        @include prefix-content(transition,all 0.8s 0.4s);
+    }
+    &.tran2 .car {
+        @include prefix-opacity(1);
+        top:0;
+        @include prefix-content(transition,all 0.8s 0.6s);
+    }
+    &.tran2 .hrline {
+        @include prefix-opacity(1);
+        @include prefix-content(transition,opacity 0.8s 0.6s);
+    }
+ }
+
+
+
+@include prefix-keyframes(shake){
+    from {
+        @include prefix-content(transform,scale(.9,.9));
+    }to{
+        @include prefix-content(transform,scale(1.1,1.1));
+    }
+}
+
