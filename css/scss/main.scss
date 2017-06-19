@@ -55,8 +55,11 @@ a{ text-decoration:none;-webkit-tap-highlight-color: rgba(255, 255, 255, 0);-web
 
 .main { @extend .w100; @extend .h100; }
 
-.pageA { display: block; }
-.pageB { }
+.page {  @extend .w100; @extend .h100; }
+.pageA { display: none; }
+.pageB {display: none;}
+
+.pageC { display: block; }
 
 .pageA {
     .ezlogo { 
@@ -87,7 +90,7 @@ a{ text-decoration:none;-webkit-tap-highlight-color: rgba(255, 255, 255, 0);-web
             position: relative;
             top:0;
             @include prefix-opacity(1);
-         
+          
         }
         
         .loadLine {
@@ -191,10 +194,9 @@ a{ text-decoration:none;-webkit-tap-highlight-color: rgba(255, 255, 255, 0);-web
    
 }
 .pageB {
-    height: 100%;
-   
-    width: 100%;
-  
+    position: absolute;
+    left:0;
+    top:0;
     .ezlogo { 
         padding-top: 8%;
         padding-bottom: 7%;
@@ -236,12 +238,14 @@ a{ text-decoration:none;-webkit-tap-highlight-color: rgba(255, 255, 255, 0);-web
         letter-spacing: 3px;
         color: #353535;
         @include prefix-opacity(0);
+       
     }
     .car {
         @include prefix-opacity(0);
         position: relative;
         top:50px;
-        img { width: rem(220); margin:8% auto 0 auto;  }
+        .carhod { width: rem(220); position: relative; margin:8% auto 0 auto;  }
+        .lamp { @include prefix-opacity(0); position: absolute; left:0; right: 0; margin: 0 auto; width: rem(430); top:rem(-120);  }
     }
     &.tran1_1 .ezlogo img {
        @include prefix-opacity(1);
@@ -262,19 +266,137 @@ a{ text-decoration:none;-webkit-tap-highlight-color: rgba(255, 255, 255, 0);-web
         top:0;
         @include prefix-content(transition,all 0.8s 0.6s);
     }
+    &.tran2 .car .lamp {
+         @include prefix-animation(lamp 1s 1.6s linear forwards);
+    }
     &.tran2 .hrline {
         @include prefix-opacity(1);
         @include prefix-content(transition,opacity 0.8s 0.6s);
     }
  }
+.pageC {
+     position: fixed;
+     top:0;
+     left:0;
+    .pageCbg {
+        background: url(../images/bgc.jpg); background-size:100% 100%; 
+        height: 100vh;
+        position: relative;
+        .sun {
+            width: rem(80);
+            position: absolute;
+            right:rem(40);
+            top:rem(40);
+            z-index: 4;
+        }
+        .curve {
+            position: absolute;
+            width:rem(500);
+            right:rem(45);
+            top:rem(50);
+            mix-blend-mode: screen;
+            z-index: 2; 
+        }
+        .carcve { 
+            width: rem(80);
+            position: absolute;
+            left:rem(250);
+            bottom: rem(-200);
+        }
+    }
+    .pgc {
+     .opbg {
+        @extend .w100;
+        @extend .h100;
+        position: fixed;
+        top:0;
+        left:0;
+        z-index: 5;
+        background: rgba(0,0,0,0.5);
+        .carcvebox {
+            position: relative;
+            @extend .w100;
+            left:0;
+            height: rem(300);
+            background: #000;
+            overflow: hidden;
+        }
+        .car-d {
+            position: absolute;
+            left:0;
+            bottom:0;
+            width: 100%;
+            background: rgba(0,0,0,1);
+            z-index: 3;
+         }
+         h2 {
+             color: #fff;
+             font-weight: normal;
+             font-size:rem(38);
+             padding:rem(125) 0 rem(20) rem(30);
+              @include prefix-opacity(0);
+              @include prefix-animation(breath .5s 0.3s linear forwards);
+         }
+         p {
+             color: #fff;
+             font-size: rem(24);
+             padding-top:rem(35);
+             padding-left:rem(30);
+             @include prefix-opacity(0);
+            
+         }
+         .op1 {
+                @include prefix-animation(breath .5s .9s linear forwards);
+         }
+         .op2 {
+                @include prefix-animation(breath .5s 1.5s linear forwards);
+         }
 
+    }       
+    }
 
+    &.tran3 .carcve {
+        bottom:rem(580);
+        @include prefix-content(transition,bottom 4.2s 0.3s);
+    }
+    &.tran3 .curve {
+        @include prefix-animation(light 2.2s 1.1s  linear forwards);
+    }
+   
+}
 
 @include prefix-keyframes(shake){
     from {
-        @include prefix-content(transform,scale(.9,.9));
+        @include prefix-content(transform,scale(0.9));
     }to{
-        @include prefix-content(transform,scale(1.1,1.1));
+        @include prefix-content(transform,scale(1.1));
     }
+}
+
+@include prefix-keyframes(lamp){
+    0%{ @include prefix-opacity(0);}
+ 	25%{@include prefix-opacity(1);}
+	50%{@include prefix-opacity(0);}
+	75%{@include prefix-opacity(1);}
+	100%{@include prefix-opacity(0);}
+}
+
+@include prefix-keyframes(breath){
+ 	0%{ @include prefix-opacity(1); }
+ 	25%{ @include prefix-opacity(0.1);}
+	50%{ @include prefix-opacity(1); }
+	75%{ @include prefix-opacity(0.1);}
+	100%{ @include prefix-opacity(1); }
+}
+
+@include prefix-keyframes(light){
+    0% { width: rem(0); }
+    25% { width: rem(500); }
+    50% { width: rem(440); @include prefix-content(transform, rotate(8deg)); right:rem(73); top:rem(20);  }
+    75% {width: rem(380); @include prefix-content(transform, rotate(16deg)); right:rem(101); top:rem(-8);  }
+    100% {width: rem(320); @include prefix-content(transform, rotate(24deg)); right:rem(120); top:rem(-25);  }
+    //  @include prefix-content(transform, rotate(30deg));
+    //  right:rem(45);
+    //         top:rem(50);
 }
 

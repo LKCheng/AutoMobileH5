@@ -16,9 +16,25 @@ var EZ = {
             $(".pageA .ezlogo img").addClass("tranlogo");
             $(".pageB").addClass("tran1_1");
             $(".pageA .tranlogo").on("webkitTransitionEnd",function(){
+               
                 $(".loadcar").addClass("twocar");
                 $(".pageB").addClass("tran2");
             });
+
+            // $(".pageB .lamp").on("webkitAnimationEnd", function () {
+            //     $(".pageA").fadeOut(300);
+            //     $(".pageB").fadeOut(300);
+            //     $(".pageC").fadeIn("slow");
+            // });
+
+          
         });
+        $(".pageC .op2").on("webkitAnimationEnd", function () {
+            $(".pageC .curve").css("width", 0);
+            $(".pageC .pgc").fadeOut(300);
+            $(".pageC").addClass("tran3");
+           
+        });
+
     }
 }
